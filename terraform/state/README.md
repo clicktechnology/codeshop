@@ -12,7 +12,7 @@ In short the environment is created like this
 - Initialise Terraform
 - Execute infrastructure to AWS.
 
-To start the process, open a terminal window in Linux (CTRL + ALT + t).  `cd` into the state folder and initialise the Terraform state environment..
+To start the process, open a terminal window in Linux `(CTRL + ALT + t)`.  `cd` into the state folder and initialise the Terraform state environment..
 ```sh
 cd state
 terraform init

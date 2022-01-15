@@ -36,7 +36,7 @@ In short, the environment is created like this..
 - Initialise Terraform
 - Execute infrastructure to AWS.
 
-To start the process, open a terminal window in Linux (CTRL + ALT + t).  Once open, clone the `codeshop` repo and cd into the `terraform` directory as shown below..
+To start the process, open a terminal window in Linux `(CTRL + ALT + t)`.  Once open, clone the `codeshop` repo and cd into the `terraform` directory as shown below..
 ```sh
 cd
 git clone git@github.com:clicktechnology/codeshop.git
