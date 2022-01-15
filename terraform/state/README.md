@@ -1,7 +1,4 @@
-# AWS Coding Exercise
-
-Welcome to the documentation for the coding exercise for Enivata.
-The aim is of this documentation is to be as accurate, brief and usable as possible.  Setups are considered for Linux terminal only.
+# AWS Coding Exercise - Backend setup
 
 This part of the repo is not required by the excercise but allows the user to create the backend per specification and ensures solution completeness.
 

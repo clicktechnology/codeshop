@@ -10,7 +10,7 @@ These are the basic instructions for setting up AWS and Terraform and then runni
 - [Install the Terraform CLI](#install-terraform) - Skip this if you already have this installed.
 - [Create an AWS Account](#create-an-aws-account) - Skip this if you already have this installed.
 - [Create the Terrform state backend](state/README.md#install-terraform) - Skip this if you already have this installed or is not needed.
-- [Create the Terraform infrastructure](create-the-terraform-infrastructure) - Run the infrastructure.
+- [Create the Terraform infrastructure](#create-the-terraform-infrastructure) - Run the infrastructure.
 
 ### Install Terraform
 
@@ -26,14 +26,17 @@ Source : https://learn.hashicorp.com/tutorials/terraform/install-cli
 ### Create an AWS Account
 Set up your AWS Acount [here](https://docs.aws.amazon.com/polly/latest/dg/setting-up.html) and get your Access and Secret keys [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).  Keep them ready for later in this document, as you'll need them to build the infrastructure without authentication.
 
+### Create the Terrform state backend
+Skip this if you already have this installed or is not needed.  [Click here](state/README.md#install-terraform) if you need to install the backend.
+
 ### Create the Terraform infrastructure
-In short the environment is created like this
+In short, the environment is created like this..
 - Clone the exercise repo from Github
 - Set some environment variables
 - Initialise Terraform
 - Execute infrastructure to AWS.
 
-To start the process, open a terminal window in Linux (CTRL + ALT + t).  Once open, clone the `codeshop` repo and cd into the `terraform` directory as shown below.
+To start the process, open a terminal window in Linux (CTRL + ALT + t).  Once open, clone the `codeshop` repo and cd into the `terraform` directory as shown below..
 ```sh
 cd
 git clone git@github.com:clicktechnology/codeshop.git
