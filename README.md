@@ -11,4 +11,5 @@ git@github.com:clicktechnology/codeshop.git
 ```
 
 Morgan Conlon
+
 morgan.conlon@click-technology.com
