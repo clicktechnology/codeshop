@@ -5,19 +5,11 @@ The aim is of this documentation is to be as accurate, brief and usable as possi
 
 ## SSH Keys
 
-SSH keys are needed to clone the code repo for deployment.  The assumption is that the code is in github and is market Private.
-
-Log in to your Ansible server as the ansible user.
-
-To create the key pair for a deployment, simply use the commandline below to generate your keys on the Ansible Tower (or equivalent) machine.
+take the private key as given, and save it to the ```/home/ansible/.ssh/``` directory as ```id_rsa_deploy```.  In practive, the public key  ```id_rsa_deploy.pub``` would be put there too and uploaded to github under the "Settings", "SSH and GPG keys" menu.
 
 ```sh
-ssh-keygen -f ~/.ssh/id_rsa_deploy -t rsa -C "ansible@company.co.uk"
+/home/ansible/.ssh/id_rsa_deploy
 ```
-Your new keys are in `~/.ssh/`.  `id_rsa_deploy` is the private key, while `id_rsa_deploy.pub` is the public key.
-
-Log on to github and upload the `id_rsa_deploy.pub` public key to your account under the "Settings", "SSH and GPG keys" menu.
-
 The private key will be copied during runtime to the EC2 instance and will be used to clone the repo.
 
 ## AWS dynamic inventory
