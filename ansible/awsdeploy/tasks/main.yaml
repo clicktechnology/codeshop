@@ -1,0 +1,82 @@
+---
+- name: Install nginx from the AWS Linux extras repo
+  command: "amazon-linux-extras install nginx1 -y"
+
+- name: Install base packages
+  ansible.builtin.package:
+    name:
+      - git
+      - python3-devel
+    state: present
+
+- name: Ensure group "webapps" exists with gid 570
+  ansible.builtin.group:
+    name: webapps
+    state: present
+    gid: 570
+
+- name: Ensure the user "my_app_user" exists uid 1503 and a primary group of "webapps"
+  ansible.builtin.user:
+    name: "{{ username }}"
+    uid: 1503
+    groups: webapps
+
+- name: Create a directory to clone the app into
+  ansible.builtin.file:
+    path: /tmp/my_app
+    state: directory
+    mode: 0755
+
+- name: Ensure GitHub deployment key is present on the server.
+  copy:
+    src: "{{ deployment_key }}"
+    dest: /root/.ssh/id_rsa.github
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Configure ssh to use ansible key for github.com
+  template:
+    src: templates/ssh_config.j2
+    dest: /root/.ssh/config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Clone the repo
+  ansible.builtin.git:
+    key_file: /root/.ssh/id_rsa.github
+    repo: "{{ repo }}"
+    accept_hostkey: yes
+    dest: /tmp/my_app/
+    version: "{{ branch }}"
+
+- name: Recursively change ownership of directories
+  ansible.builtin.file:
+    path: /tmp/my_app
+    state: directory
+    recurse: yes
+    owner: ansible
+    group: root
+    mode: 0775
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /opt/my_app
+    state: directory
+    owner: ansible
+    group: root
+    mode: 0775
+
+- name: Copy the repo code to /opt/my_app
+  copy:
+    src: /tmp/my_app
+    remote_src: true
+    dest: /opt/my_app/
+    directory_mode: yes
+
+- name: Install nginx from the application
+  command: "cd /opt/my_app && make install"
+  become: yes
+  become_user: "{{ username }}"
+  notify: Restart Nginx

@@ -1,0 +1,7 @@
+---
+- name: EC2 Hosts playbook
+  become: true
+  hosts: tag_Name_my_instance_dev
+  gather_facts: no
+  roles:
+    - { role: awsdeploy }
